@@ -18,17 +18,16 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = "asset_sync"
 
-  s.add_dependency('fog', ">= 1.8.0")
-  s.add_dependency('unf')
+  s.add_dependency('mongo')
   s.add_dependency('activemodel')
   s.add_dependency('mime-types')
 
   s.add_development_dependency "rspec"
   s.add_development_dependency "bundler"
-  s.add_development_dependency "jeweler"
+  #s.add_development_dependency "jeweler"
 
-  s.add_development_dependency "uglifier"
-  s.add_development_dependency "appraisal"
+  #s.add_development_dependency "uglifier"
+  #s.add_development_dependency "appraisal"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
