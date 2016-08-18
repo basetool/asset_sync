@@ -12,8 +12,12 @@ module AssetSync
           client.database.fs.delete(i['_id'])
         end
         fn = open(f)
+        
         content_type = `file --mime -b #{f}`.chomp
         content_type =   MIME::Type.simplified(content_type)
+        content_type = 'text/css' if content_type == 'text/plain' && f =~ /\.css$/i
+        content_type = 'application/javascript' if content_type == 'text/plain' && f =~ /\.js$/i
+
         fs.upload_from_stream(file, fn, content_type: content_type)
         fn.close
       end
