@@ -2,8 +2,6 @@ require 'mime-types'
 module AssetSync
   class Mongo
     def self.upload(config,file)
-      p config.public_path
-      puts file
       client = config.mongo
       fs = client.database.fs
       f = config.public_path.join(file)
@@ -17,7 +15,7 @@ module AssetSync
         content_type = 'text/css' if content_type == 'text/plain' && f.to_s =~ /\.css$/i
         content_type = 'application/javascript' if content_type == 'text/plain' && f.to_s =~ /\.js$/i
 
-        fs.upload_from_stream(file, fn, content_type: content_type)
+        fs.upload_from_stream(file, fn, :content_type => content_type)
         fn.close
       end
     end
