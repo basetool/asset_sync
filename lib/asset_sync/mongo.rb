@@ -4,7 +4,7 @@ module AssetSync
     def self.upload(config,file)
       client = config.mongo
       fs = client.database.fs
-      f = config.public_path.join(file)
+      f = "#{config.public_path}/#{file}".gsub('//','/')
       if File.exist?(f) && File.file?(f)
         client.database.fs.find(:filename => file).each do |i|
           client.database.fs.delete(i['_id'])
